@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from "react";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { ArrowLeft } from "phosphor-react-native";
+import { useTheme } from "styled-components/native";
 
 import {
   Container,
   Header,
   BackButton,
-  BackIcon,
   PercentageText,
   DescriptionText,
   Content,
@@ -30,6 +31,7 @@ const initialMetrics: DietMetrics = {
 };
 
 export function Statistics() {
+  const theme = useTheme();
   const [metrics, setMetrics] = useState<DietMetrics>(initialMetrics);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -65,7 +67,7 @@ export function Statistics() {
       <Container type={"NEUTRAL"}>
         <Header type={"NEUTRAL"}>
           <BackButton onPress={handleGoBack}>
-            <BackIcon type={"NEUTRAL"} />
+            <ArrowLeft size={24} color={theme.COLORS.GRAY_2} />
           </BackButton>
           <PercentageText>Carregando...</PercentageText>
         </Header>
@@ -77,7 +79,14 @@ export function Statistics() {
     <Container type={headerType}>
       <Header type={headerType}>
         <BackButton onPress={handleGoBack}>
-          <BackIcon type={headerType} />
+          <ArrowLeft
+            size={24}
+            color={
+              headerType === "POSITIVE"
+                ? theme.COLORS.GREEN_DARK
+                : theme.COLORS.RED_DARK
+            }
+          />
         </BackButton>
         <PercentageText>{metrics.percentageOnDiet.toFixed(2)}%</PercentageText>
         <DescriptionText>das refeições dentro da dieta</DescriptionText>

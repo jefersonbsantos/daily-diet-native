@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ArrowLeft } from "phosphor-react-native";
 import { TouchableOpacity } from "react-native";
 import { DefaultTheme } from "styled-components/native";
 
@@ -54,13 +53,6 @@ export const BackButton = styled(TouchableOpacity)`
   left: 24px;
   top: 32px;
 `;
-
-export const BackIcon = styled(ArrowLeft).attrs<Props>(
-  ({ theme, type }: { theme: DefaultTheme; type: StatisticsStyleProps }) => ({
-    size: 24,
-    color: theme.COLORS[iconColors[type]],
-  })
-)``;
 
 export const PercentageText = styled.Text`
   ${({ theme }: { theme: DefaultTheme }) => css`
